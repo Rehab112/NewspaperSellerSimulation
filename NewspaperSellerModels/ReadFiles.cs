@@ -53,6 +53,9 @@ namespace NewspaperSellerModels
             simulationSystem.calcDayTypeRange(simulationSystem.DayTypeDistributions);
             //Todo :: cout 
 
+            Enums.DayType type = simulationSystem.dayTypeMapping(100, simulationSystem.DayTypeDistributions);
+            
+
             simulationSystem.DemandDistributions = new List<DemandDistribution>();
             DemandDistribution demandDistribution;
             for (int i = 19; i < 26; i++)
@@ -81,14 +84,9 @@ namespace NewspaperSellerModels
                 demandDistribution.DayTypeDistributions.Add(dayTypeDistribution);
 
                 simulationSystem.DemandDistributions.Add(demandDistribution);
-
             }
 
-
-
-
-
-
+            simulationSystem.getDemandDestributions(simulationSystem.DemandDistributions);
 
 
             for (int i = 0; i < Lines.Length; i++)
@@ -96,47 +94,42 @@ namespace NewspaperSellerModels
                 Console.WriteLine("Line " + i.ToString() + " : " + Lines[i]);
             }
             Console.WriteLine("Simulatiiiiion");
-            Console.WriteLine( simulationSystem.NumOfNewspapers );
+            Console.WriteLine( simulationSystem.NumOfNewspapers);
             Console.WriteLine(simulationSystem.NumOfRecords);
             Console.WriteLine(simulationSystem.PurchasePrice );
             Console.WriteLine(simulationSystem.ScrapPrice);
             Console.WriteLine(simulationSystem.SellingPrice);
+
+            
+
             for (int i = 0; i < simulationSystem.DayTypeDistributions.Count; i++)
             {
-                Console.WriteLine(simulationSystem.DayTypeDistributions[i].DayType);
-                Console.WriteLine(simulationSystem.DayTypeDistributions[i].Probability);
-                Console.WriteLine(simulationSystem.DayTypeDistributions[i].CummProbability);
-                Console.WriteLine(simulationSystem.DayTypeDistributions[i].MinRange);
-                Console.WriteLine(simulationSystem.DayTypeDistributions[i].MaxRange);
+                Console.WriteLine(simulationSystem.DayTypeDistributions[i].DayType+",  "+ simulationSystem.DayTypeDistributions[i].Probability+",  "+ 
+                    simulationSystem.DayTypeDistributions[i].CummProbability+",  "+ simulationSystem.DayTypeDistributions[i].MinRange+",  "+ 
+                    simulationSystem.DayTypeDistributions[i].MaxRange);
             }
+
+            
+
             for (int i = 0; i < simulationSystem.DemandDistributions.Count; i++)
             {
-                Console.WriteLine(simulationSystem.DemandDistributions[i].Demand);
+                Console.Write(simulationSystem.DemandDistributions[i].Demand);
                 for (int j = 0; j < simulationSystem.DemandDistributions[i].DayTypeDistributions.Count; j++)
                 {
-                    Console.WriteLine(simulationSystem.DemandDistributions[i].DayTypeDistributions[j].DayType);
-                    Console.WriteLine(simulationSystem.DemandDistributions[i].DayTypeDistributions[j].Probability);
+                    Console.Write(",  "+simulationSystem.DemandDistributions[i].DayTypeDistributions[j].DayType+",  "+ simulationSystem.DemandDistributions[i].DayTypeDistributions[j].Probability
+                        + ",  " + simulationSystem.DemandDistributions[i].DayTypeDistributions[j].MinRange+ ",  " + simulationSystem.DemandDistributions[i].DayTypeDistributions[j].MaxRange);
                 }
+                Console.WriteLine(" ");
             }
-            return simulationSystem;
-        }
 
-        List<DayTypeDistribution> calcDayTypeRange(List<DayTypeDistribution> dayTypeDistribution)
-        {
-            decimal sum = 0;
-            int minRnage, maxRange = 0;
-            for (int i = 0; i < dayTypeDistribution.Count; i++)
-            {
-                sum += dayTypeDistribution[i].Probability;
-                dayTypeDistribution[i].CummProbability = sum;
-                minRnage = maxRange + 1;
-                dayTypeDistribution[i].MinRange = minRnage;
-                maxRange = (int)(dayTypeDistribution[i].CummProbability * 100);
-                if (i == dayTypeDistribution.Count - 1)
-                    maxRange = 0;
-                dayTypeDistribution[i].MaxRange = maxRange;
-            }
-            return dayTypeDistribution;
+            if (type == Enums.DayType.Good)
+                Console.WriteLine("goooooodddddd");
+            else if (type == Enums.DayType.Poor)
+                Console.WriteLine("Poooooooooorrrrrr");
+            else Console.WriteLine("faaaaaiiiiiiirrrrrrrrr");
+
+
+            return simulationSystem;
         }
     }
 }

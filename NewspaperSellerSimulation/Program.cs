@@ -17,7 +17,7 @@ namespace NewspaperSellerSimulation
         static void Main()
         {
             ReadFiles readFiles = new ReadFiles();
-            readFiles.ReadFromWordDocument("D:\\Study\\4-th year First Term\\Modeling\\Task2\\Re7ab\\NewspaperSellerSimulation\\NewspaperSellerSimulation\\TestCases\\TestCase1.txt");
+            readFiles.ReadFromWordDocument("D:\\ASU\\semester 8\\modeling\\task two\\NewspaperSellerSimulation_Students\\NewspaperSellerSimulation\\TestCases\\TestCase1.txt");
             readFiles.fillSimulationSystem();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
