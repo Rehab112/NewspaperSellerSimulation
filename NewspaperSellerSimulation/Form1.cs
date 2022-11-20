@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NewspaperSellerModels;
-using NewspaperSellerTesting;
+//using NewspaperSellerTesting;
 
 namespace NewspaperSellerSimulation
 {

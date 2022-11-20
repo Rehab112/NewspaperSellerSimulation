@@ -31,7 +31,7 @@ namespace NewspaperSellerModels
 
 
         ///////////// MY FUNCTIONS /////////////
-        void calcDayTypeRange(List<DayTypeDistribution> DayTypeDistribution)
+        public void calcDayTypeRange(List<DayTypeDistribution> DayTypeDistribution)
         {
             decimal sum = 0;
             int minRnage, maxRange = 0;
