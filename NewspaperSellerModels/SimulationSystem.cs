@@ -31,6 +31,41 @@ namespace NewspaperSellerModels
 
 
         ///////////// MY FUNCTIONS /////////////
+
+        //int demandMapping(int rand, Enums.DayType dayType)
+        //{
+        //    for(int i = 0; i < DemandDistributions.Count; i++)
+        //    {
+        //        for (int j = 0; j < DemandDistributions[i].DayTypeDistributions.Count; j++)
+        //        {
+        //            if(dayType == DemandDistributions[i].DayTypeDistributions[j].DayType)
+        //            {
+        //                if (rand >= DemandDistributions[i].DayTypeDistributions[j].MinRange && rand <= DemandDistributions[i].DayTypeDistributions[j].MaxRange)
+        //                {
+
+        //                    return DemandDistributions[i].Demand;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+
+
+        Enums.DayType dayTypeMapping(int rand, List<DayTypeDistribution> DayTypeDistribution)
+        {
+            for (int i = 0; i < DayTypeDistribution.Count - 1; i++)
+            {
+                if (rand >= DayTypeDistribution[i].MinRange && rand <= DayTypeDistribution[i].MaxRange)
+                {
+
+                    return DayTypeDistribution[i].DayType;
+                }
+            }
+
+            return DayTypeDistribution[DayTypeDistribution.Count - 1].DayType;
+        }
+
         public void calcDayTypeRange(List<DayTypeDistribution> DayTypeDistribution)
         {
             decimal sum = 0;
